@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProctorGrid — Faculty Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+<div class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <span class="brand-name">ProctorGrid</span>
+  </div>
+  <div class="topbar-right">
+    <span class="live-indicator"><span class="live-dot"></span>LIVE</span>
+    <a class="topbar-link" href="index.html">← Exam Room</a>
+  </div>
+</div>
+
+<main class="wrap console">
+
+  <div class="console-head">
+    <div>
+      <p class="eyebrow">Faculty Console</p>
+      <h1 class="console-title">Proctoring Operations</h1>
+    </div>
+    <span class="node-id" id="serverStatus">CHECKING BACKEND…</span>
+  </div>
+
+  <!-- Stat strip -->
+  <div class="stat-strip">
+    <div class="stat">
+      <span class="stat-value" id="statTotal">0</span>
+      <span class="stat-label">Sessions</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="statActive">0</span>
+      <span class="stat-label">In Progress</span>
+    </div>
+    <div class="stat stat-warn">
+      <span class="stat-value" id="statFlagged">0</span>
+      <span class="stat-label">Flagged (risk ≥ 60)</span>
+    </div>
+    <div class="stat stat-alert">
+      <span class="stat-value" id="statAuto">0</span>
+      <span class="stat-label">Auto-submitted</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="statAlerts">0</span>
+      <span class="stat-label">Total Alerts</span>
+    </div>
+  </div>
+
+  <div class="console-grid">
+
+    <!-- Student session cards -->
+    <section class="panel students-panel">
+      <div class="panel-head">
+        <p class="eyebrow">Active Candidates</p>
+        <span class="panel-hint">sorted by risk</span>
+      </div>
+      <div class="students-grid" id="studentsGrid">
+        <p class="empty-state">No sessions yet. Start an exam from the student page to see it appear here in real time.</p>
+      </div>
+    </section>
+
+    <!-- Alert feed -->
+    <section class="panel feed-panel">
+      <div class="panel-head">
+        <p class="eyebrow">Alert Feed</p>
+        <span class="panel-hint" id="feedCount">0 events</span>
+      </div>
+      <div class="feed-list" id="feedList">
+        <p class="empty-state">No alerts yet.</p>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

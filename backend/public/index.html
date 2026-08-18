@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProctorGrid — Exam Session</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <span class="brand-name">ProctorGrid</span>
+  </div>
+  <div class="topbar-right">
+    <span class="node-id" id="nodeId">NODE — UNASSIGNED</span>
+    <a class="topbar-link" href="dashboard.html">Faculty Console →</a>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ===================== GATE: name capture before exam starts ===================== -->
+  <section class="panel gate" id="gatePanel">
+    <p class="eyebrow">Session Setup</p>
+    <h1 class="gate-title">Enter the examination room</h1>
+    <p class="gate-sub">Your webcam, tab focus and window state will be monitored for the duration of the exam. This demo simulates those signals with the buttons below.</p>
+    <form id="gateForm" class="gate-form">
+      <label for="studentName">Full name</label>
+      <input id="studentName" type="text" placeholder="e.g. Arshad Ali" autocomplete="off" required>
+      <button type="submit" class="btn btn-primary">Enter Exam Room</button>
+    </form>
+  </section>
+
+  <!-- ===================== EXAM: shown once a session exists ===================== -->
+  <section class="exam" id="examPanel" hidden>
+
+    <div class="grid-2">
+
+      <!-- Monitor card -->
+      <div class="panel monitor-card">
+        <div class="monitor-frame">
+          <div class="monitor-scan"></div>
+          <div class="monitor-center">
+            <div class="rec-dot" id="recDot"></div>
+            <p class="monitor-label" id="monitorLabel">STANDBY</p>
+          </div>
+          <div class="monitor-corner tl"></div>
+          <div class="monitor-corner tr"></div>
+          <div class="monitor-corner bl"></div>
+          <div class="monitor-corner br"></div>
+        </div>
+        <div class="monitor-meta">
+          <div>
+            <span class="meta-label">Candidate</span>
+            <span class="meta-value" id="studentLabel">—</span>
+          </div>
+          <div>
+            <span class="meta-label">Session</span>
+            <span class="meta-value mono" id="sessionLabel">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam card -->
+      <div class="panel exam-card">
+        <div class="exam-head">
+          <p class="eyebrow">Question 1 of 3</p>
+          <div class="timer" id="timer">20:00</div>
+        </div>
+        <h2 class="q-title">Which layer does Docker Compose primarily orchestrate?</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1"> Container images and multi-service runtime configuration</label>
+          <label class="option"><input type="radio" name="q1"> Physical network switches</label>
+          <label class="option"><input type="radio" name="q1"> Git commit history</label>
+          <label class="option"><input type="radio" name="q1"> Browser rendering engines</label>
+        </div>
+        <div class="exam-actions">
+          <span class="status-pill" id="statusPill">Status: Ready</span>
+          <button class="btn btn-outline" id="submitBtn">Submit Exam</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simulated proctoring signals -->
+    <div class="panel sim-card">
+      <div class="sim-head">
+        <p class="eyebrow">Proctoring Signal Simulator</p>
+        <p class="sim-sub">In a production build these fire automatically from webcam and window-focus detection. For this demo, trigger them manually.</p>
+      </div>
+      <div class="sim-buttons">
+        <button class="sim-btn" data-event="Face Missing">
+          <span class="sim-btn-title">Face Missing</span>
+          <span class="sim-btn-meta">weight +15</span>
+        </button>
+        <button class="sim-btn" data-event="Multiple Faces">
+          <span class="sim-btn-title">Multiple Faces</span>
+          <span class="sim-btn-meta">weight +25</span>
+        </button>
+        <button class="sim-btn" data-event="Tab Switch">
+          <span class="sim-btn-title">Tab Switch</span>
+          <span class="sim-btn-meta">weight +10</span>
+        </button>
+      </div>
+      <div class="toast" id="toast" hidden></div>
+    </div>
+
+  </section>
+
+  <!-- ===================== SUBMITTED state ===================== -->
+  <section class="panel submitted" id="submittedPanel" hidden>
+    <p class="eyebrow" id="submittedEyebrow">Session Closed</p>
+    <h1 id="submittedTitle">Exam submitted</h1>
+    <p id="submittedSub">Your responses and integrity log have been recorded.</p>
+    <a class="btn btn-outline" href="dashboard.html">View Faculty Console</a>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
